@@ -11,4 +11,8 @@ public class CommonResponse<T> {
 
 	private T data;
 
+	private String message;
+
+	private Integer statusCode;
+
 }

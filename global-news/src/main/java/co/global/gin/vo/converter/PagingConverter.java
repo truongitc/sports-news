@@ -7,6 +7,8 @@ import co.global.gin.model.User;
 import co.global.gin.utils.Constants;
 import co.global.gin.vo.request.paging.SortingAndPagingRequestVO;
 import co.global.gin.vo.response.UserResponseVO;
+import co.global.gin.vo.response.paging.PagedVO;
+import co.global.gin.vo.response.paging.SortDirection;
 
 public final class PagingConverter {
 
@@ -17,10 +19,11 @@ public final class PagingConverter {
 	public static SortingAndPagingRequestVO getUserPagingRequestVO(SortingAndPagingRequestVO pagingVO) {
 		SortingAndPagingRequestVO sortingAndPagingRequestVO = new SortingAndPagingRequestVO();
 		sortingAndPagingRequestVO
-				.setPage(pagingVO.getPage() > 0 ? pagingVO.getPage() -1 : Integer.valueOf(Constants.DEFAULT_PAGE));
+				.setPage(pagingVO.getPage() > 0 ? pagingVO.getPage() - 1 : Integer.valueOf(Constants.DEFAULT_PAGE));
 		sortingAndPagingRequestVO
 				.setSize(pagingVO.getSize() > 0 ? pagingVO.getSize() : Integer.valueOf(Constants.DEFAULT_SIZE));
 		sortingAndPagingRequestVO.setSortKey(mapUserSortKey(pagingVO.getSortKey()));
+		sortingAndPagingRequestVO.setSortDir(SortDirection.parseFromString(pagingVO.getSortDir()).toString());
 
 		return sortingAndPagingRequestVO;
 	}
@@ -65,6 +68,18 @@ public final class PagingConverter {
 		}
 
 		return usersResponseVO;
+	}
+
+	public static PagedVO getPagedResponseVO(long totalElement, SortingAndPagingRequestVO pagingRequestVO) {
+		int totalPage = (int) Math.ceil((float) totalElement / pagingRequestVO.getSize());
+
+		PagedVO pagedVO = new PagedVO();
+		pagedVO.setCurrentPage(pagingRequestVO.getPage());
+		pagedVO.setPageSize(pagingRequestVO.getSize());
+		pagedVO.setTotalPage(totalPage);
+		pagedVO.setTotalRecord(totalElement);
+
+		return pagedVO;
 	}
 
 }
