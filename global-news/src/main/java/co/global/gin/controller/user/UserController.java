@@ -1,4 +1,4 @@
-package co.global.gin.controller;
+package co.global.gin.controller.user;
 
 import java.util.Map;
 
@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +37,7 @@ public class UserController {
 	private UserService userService;
 
 	@GetMapping
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Map<String, Object>> getPagingUsers(
 			@RequestParam(required = false, defaultValue = Constants.DEFAULT_PAGE) Integer page,
 			@RequestParam(required = false, defaultValue = Constants.DEFAULT_SIZE) Integer size,
