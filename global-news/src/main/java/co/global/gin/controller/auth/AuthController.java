@@ -1,4 +1,4 @@
-package co.global.gin.controller;
+package co.global.gin.controller.auth;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -31,7 +31,7 @@ import co.global.gin.payload.response.JwtResponse;
 import co.global.gin.payload.response.MessageResponse;
 import co.global.gin.repository.RoleRepository;
 import co.global.gin.repository.UserRepository;
-import co.global.gin.service.UserDetailsImpl;
+import co.global.gin.service.auth.UserDetailsImpl;
 import co.global.gin.utils.Constants;
 
 @CrossOrigin(origins = "*", maxAge = 3600)

@@ -1,4 +1,4 @@
-package co.global.gin.service;
+package co.global.gin.service.auth;
 
 import java.util.Collection;
 import java.util.List;

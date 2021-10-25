@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import co.global.gin.configuration.jwt.AuthEntryPointJwt;
 import co.global.gin.configuration.jwt.AuthTokenFilter;
-import co.global.gin.service.UserDetailsServiceImpl;
+import co.global.gin.service.auth.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
